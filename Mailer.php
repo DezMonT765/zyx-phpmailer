@@ -272,9 +272,9 @@ class Mailer extends BaseMailer
 
             $msg = ' - Sending email. ';
             //native PHPMailer's way to pass results to [[doCallback()]] function is a little bit strange
-            $msg .= (!empty($to)) ? ('To: ' . (is_array($to) ? implode(';', $to) : $to) . '.') : '';
-            $msg .= (!empty($cc)) ? ('Cc: ' . (is_array($cc) ? implode(';', $cc) : $cc) . '.') : '';
-            $msg .= (!empty($bcc)) ? ('Bcc: ' . (is_array($bcc) ? implode(';', $bcc) : $bcc) . '.') : '';
+            $msg .= ((!empty($to)) ? ('To: ' . (is_array($to) ? serialize($to) : $to) . '.') : '');
+            $msg .= ((!empty($cc)) ? ('Cc: ' . (is_array($cc) ? serialize($cc) : $cc) . '.') : '');
+            $msg .= ((!empty($bcc)) ? ('Bcc: ' . (is_array($bcc) ? serialize($bcc) : $bcc) . '.') : '');
 
             $msg .= ' Subject: "' . $subject . '"';
             if ($result) {
